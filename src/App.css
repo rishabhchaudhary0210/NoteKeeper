@@ -1,38 +1,215 @@
-.App {
+*{
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+
+/*MAIN*/
+.mainContainer{
+  background-color: white;
+  display: flex;
+  /* margin-right: 30px; */
+}
+
+#plusPost{
+  background-color: black;
+  border-radius: 50%;
+  color: white;
+  padding: 10px 18px;
+  font-size: 2.2rem;
+  cursor: pointer;
+  margin: 15px 0;
+  margin-left: 5px;
+  
+}
+
+#plusPost:hover{
+  border: 2px solid black;
+  background-color: white;
+  color: black;
+}
+
+.plusContainer{
+  height:100vh;
+  width: 90px;
+  border-right: 2px solid grey;
+  box-shadow: 0 2px 5px grey;
+}
+
+/* FORM */
+.formContainer{
+  background-color: rgba(97, 97, 97, 0.541);
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+.formBox {
+  /* display: none; */
+  background-color: rgb(255, 252, 232);
+  box-shadow: 2px 2px 12px black;
+  width: 370px;
+  height: 320px;
+  position: absolute;
+  top: 100px;
+  left: 35%;
+  padding: 30px 50px;
+  border-radius: 10px;
+}
+.formContainer.active{
+  display: block;
+}
+
+#newPostForm{
+  padding: 10px 15px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+#title{
+  width: 320px;
+  height: 35px;
+  border-radius: 10px;
+  border: 1px solid black;
+  outline: none;
+  margin: 10px 0;
+  padding: 5px 10px;
+  font-size: 1.0rem;
+  box-shadow: 0 2px 5px grey;
+}
+
+#content{
+  width: 320px;
+  height: 125px;
+  border-radius: 10px;
+  border: 1px solid black;
+  outline: none;
+  margin: 10px 0;
+  padding: 5px 10px;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 5px grey;
+}
+#titleLabel{
+  font-size: 1.1rem;
+}
+#contentLabel{
+  font-size: 1.1rem;
+}
+.close{
+  position: absolute;
+  right: 22px;
+  top: 22px;
+  background:none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 50%;
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.close:hover{
+  border: 1px solid black;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.submitBtn{
+  display: block;
+  margin: 10px auto;
+  background-color: black;
   color: white;
+  padding: 10px 30px;
+  border: 1px solid white;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  box-shadow: 0 2px 5px grey;
+}
+.submitBtn:hover{
+  border: 1px solid black;
+  background-color: white;
+  color: black;
 }
 
-.App-link {
-  color: #61dafb;
+
+/* POSTS */
+.postContainer{
+  display: grid;
+  grid-template-columns:repeat(auto-fit, minmax(350px, 1fr));
+  gap: 20px;
+  width: 98vw;
+}
+.postBox{
+  padding: 0.8rem 2.5rem;
+  margin: 1rem 0.9rem;
+  border-radius: 15px;
+  height: 250px;
+}
+.postHead{
+  border-bottom: 2px solid grey;
+  font-size: 2rem;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+.postContent{
+  font-size: 1rem;
+  margin-top: 20px;
+}
+.utilBox{
+  display: inline-block;
+}
+.utilBtn{
+  background:none;
+  border: none;
+  cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+
+@media screen and (max-width:1350px){
+  .formBox{
+    left: 30%;
   }
-  to {
-    transform: rotate(360deg);
+}
+
+@media screen and (max-width:840px){
+  .formBox{
+    left:25%;
+  }
+}
+
+@media screen and (max-width:750px) {
+
+  .formBox{
+    left: 30px;
+    width: 75vw;
+    padding: 30px 15px;
+  }
+  #title{
+    width: 60vw;
+  }
+  #content{
+    width: 60vw;
+  }
+  .plusContainer{
+    width: 0;
+  }
+  #plusPost{
+    z-index: 10;
+    position: fixed;
+    bottom: 15px;
+    right: 20px;
+    box-shadow: 1px 1px 5px black;
+
+  }
+  .postContainer{
+    gap:0px
+  }
+  .postBox{
+    padding: 0.8rem 1rem;
+    margin: 1rem 0.5rem;
+    /* width: 250px; */
   }
 }

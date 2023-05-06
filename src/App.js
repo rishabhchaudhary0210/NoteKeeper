@@ -1,23 +1,54 @@
-import logo from './logo.svg';
+
 import './App.css';
+import Box from './components/box';
+import NewPost from './components/addNew';
+import { useState } from 'react';
+
+
+const initialData = [{
+  id: 0,
+  title: 'First Post',
+  content: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi ut magni libero. Eum praesentium voluptatum inventore. Asperiores illo, rem iste obcaecati est nemo eius ratione, quisquam doloremque sed eligendi!"
+}];
+
+
 
 function App() {
+
+  const [data, setData] = useState(initialData);
+
+  function handleAddPost(nextPost) {
+    setData([
+      ...data,
+      nextPost
+    ]);
+  }
+  
+  function handleDeletePost(post){
+    console.log(post);
+    setData(data.filter(d=> d.id !== post.id));
+  }
+
+  function handleClick() {
+    const formContainer = document.querySelector('.formContainer');
+    // const mainContainer = document.querySelector('.mainContainer');
+    formContainer.classList.toggle('active');
+  }
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+    <div className="mainContainer">
+      <div className="plusContainer">
+        <button onClick={handleClick} id="plusPost">+</button>
+      </div>
+      <div className="formContainer">
+        <NewPost onAddPost={handleAddPost} onClose={handleClick} ></NewPost>
+      </div>
+      <div className="postContainer">
+        {data.map(d => <Box post={d} handleDeleteClick={handleDeletePost}></Box>)}
+      </div>
     </div>
   );
 }
